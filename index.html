@@ -71,20 +71,47 @@
       }
     }
 
-    /* Base Styles */
+    /* Base Styles - Override Docsify defaults */
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      background-color: var(--bg) !important;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      background-color: var(--bg);
+      background-color: var(--bg) !important;
+      background-image: none !important;
       color: var(--text);
       margin: 0;
       padding: 0;
       line-height: 1.6;
+    }
+
+    /* Override Docsify default backgrounds and decorative elements */
+    #app {
+      background-color: var(--bg) !important;
+      background-image: none !important;
+    }
+
+    /* Remove any coverpage or decorative backgrounds */
+    .cover,
+    .cover-main,
+    .cover.show {
+      background-color: var(--bg) !important;
+      background-image: none !important;
+    }
+
+    /* Ensure main wrapper is clean */
+    .app-wrap,
+    .app-nav,
+    section {
+      background-color: var(--bg) !important;
+      background-image: none !important;
     }
 
     /* Sidebar Styles */
@@ -174,8 +201,16 @@
 
     /* Main Content */
     .content {
-      background-color: var(--bg);
+      background-color: var(--bg) !important;
+      background-image: none !important;
       padding: 3rem 4rem;
+    }
+
+    /* Override any Docsify content backgrounds */
+    .markdown-body,
+    .docsify-pagination-container {
+      background-color: var(--bg) !important;
+      background-image: none !important;
     }
 
     .markdown-section {
@@ -451,6 +486,90 @@
     /* Loading */
     #app {
       color: var(--text);
+      background-color: var(--bg) !important;
+      background-image: none !important;
+    }
+
+    /* Hide any decorative images or elements */
+    img[src*="octocat"],
+    img[src*="github"],
+    .github-corner,
+    .cover-main img,
+    .cover-main svg,
+    .cover svg,
+    svg[viewBox*="0 0"] {
+      display: none !important;
+    }
+
+    /* Hide large decorative SVG elements (but keep small inline SVGs) */
+    .markdown-section svg[width][height],
+    .content svg[width][height],
+    section svg[width][height]:not(.theme-toggle svg) {
+      display: none !important;
+    }
+
+    /* Hide SVGs that are likely decorative (large viewBox) */
+    .markdown-section svg[viewBox*="0 0 24"],
+    .markdown-section svg[viewBox*="0 0 20"],
+    .content svg[viewBox*="0 0 24"],
+    .content svg[viewBox*="0 0 20"] {
+      display: none !important;
+    }
+
+    /* Hide any large decorative elements in cover */
+    .cover-main > *:not(h1):not(h2):not(h3):not(p):not(a):not(button):not(.theme-toggle) {
+      display: none !important;
+    }
+
+    /* Ensure coverpage is completely hidden if it exists */
+    section.cover {
+      display: none !important;
+    }
+
+    /* Ensure all sections have clean backgrounds */
+    section.cover,
+    section.cover.show,
+    section.cover.has-mask {
+      background: var(--bg) !important;
+      background-color: var(--bg) !important;
+      background-image: none !important;
+    }
+
+    /* Override any gradient backgrounds */
+    .cover-main::before,
+    .cover-main::after,
+    section::before,
+    section::after {
+      display: none !important;
+    }
+
+    /* Force clean backgrounds on all possible Docsify elements */
+    .app-sub-sidebar,
+    .sidebar-toggle,
+    .sidebar-toggle-button,
+    .markdown-section,
+    .markdown-section * {
+      background-image: none !important;
+    }
+
+    /* Remove any diagonal or decorative backgrounds */
+    body::before,
+    body::after,
+    html::before,
+    html::after,
+    #app::before,
+    #app::after {
+      display: none !important;
+    }
+
+    /* Remove background images from main containers only */
+    html,
+    body,
+    #app,
+    .content,
+    .markdown-section,
+    section:not(.markdown-section) {
+      background-image: none !important;
     }
 
     /* Responsive */
@@ -628,6 +747,7 @@
       subMaxLevel: 3,
       auto2top: true,
       coverpage: false,
+      themeColor: 'transparent',
       notFoundPage: true,
       homepage: 'README.md',
       search: {
