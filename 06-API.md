@@ -296,7 +296,7 @@ mutation {
 
 GraphQL endpoints require authentication via `AuthGuard`:
 
-```typescript
+```ts
 @UseGuards(AuthGuard)
 @Resolver(() => UserSchema)
 export class UserResolver {
@@ -342,7 +342,7 @@ const socket = io('http://localhost:3000', {
 
 WebSocket connections are authenticated via handshake:
 
-```typescript
+```ts
 // Server-side authentication
 socket.use((socket, next) => {
   const token = socket.handshake.auth.token;
@@ -381,7 +381,7 @@ socket.on('userJoined', (user) => {
 
 Organize connections into rooms:
 
-```typescript
+```ts
 // Server-side
 socket.join('user-room');
 socket.to('user-room').emit('message', data);
@@ -391,7 +391,7 @@ socket.to('user-room').emit('message', data);
 
 WebSocket uses Redis adapter for multi-instance support:
 
-```typescript
+```ts
 // Multiple server instances can communicate
 // via Redis pub/sub
 ```
@@ -402,7 +402,7 @@ WebSocket uses Redis adapter for multi-instance support:
 
 Version specified in controller:
 
-```typescript
+```ts
 @Controller({
   path: 'user',
   version: '1',  // /api/v1/user
@@ -466,7 +466,7 @@ X-RateLimit-Reset: 1234567890
 
 CORS is configured per environment:
 
-```typescript
+```ts
 app.enableCors({
   origin: configService.get('app.corsOrigin'),
   credentials: true,

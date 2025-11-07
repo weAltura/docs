@@ -82,7 +82,7 @@ pnpm test:debug
 
 Example service test:
 
-```typescript
+```ts
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -145,7 +145,7 @@ describe('UserService', () => {
 
 ### Controller Tests
 
-```typescript
+```ts
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
@@ -192,7 +192,7 @@ describe('UserController', () => {
 
 ### Guard Tests
 
-```typescript
+```ts
 import { ExecutionContext } from '@nestjs/common';
 import { AuthGuard } from './auth.guard';
 
@@ -231,7 +231,7 @@ describe('AuthGuard', () => {
 
 ### Database Integration Tests
 
-```typescript
+```ts
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from './user.service';
@@ -279,7 +279,7 @@ describe('UserService Integration', () => {
 
 Located in `test/app.e2e-spec.ts`:
 
-```typescript
+```ts
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
@@ -351,7 +351,7 @@ Follow AAA pattern:
 ### 2. Test Naming
 
 Use descriptive names:
-```typescript
+```ts
 it('should return user when valid ID is provided', () => {});
 it('should throw NotFoundException when user does not exist', () => {});
 ```
@@ -359,14 +359,14 @@ it('should throw NotFoundException when user does not exist', () => {});
 ### 3. Mocking
 
 Mock external dependencies:
-```typescript
+```ts
 jest.spyOn(repository, 'findOne').mockResolvedValue(user);
 ```
 
 ### 4. Test Isolation
 
 Each test should be independent:
-```typescript
+```ts
 beforeEach(() => {
   // Reset mocks
   jest.clearAllMocks();
@@ -383,7 +383,7 @@ Aim for high coverage:
 ### 6. Test Data
 
 Use factories for test data:
-```typescript
+```ts
 const createUser = (overrides = {}) => ({
   id: '1',
   email: 'test@example.com',
@@ -403,7 +403,7 @@ DATABASE_NAME=wealtura_test
 ### Test Fixtures
 
 Create reusable test fixtures:
-```typescript
+```ts
 // test/fixtures/user.fixture.ts
 export const userFixture = {
   email: 'test@example.com',
@@ -415,7 +415,7 @@ export const userFixture = {
 ### Test Helpers
 
 Create test helpers:
-```typescript
+```ts
 // test/helpers/auth.helper.ts
 export async function createAuthenticatedUser(app: INestApplication) {
   // Sign up and return token
@@ -426,7 +426,7 @@ export async function createAuthenticatedUser(app: INestApplication) {
 
 ### Repository Mocking
 
-```typescript
+```ts
 {
   provide: getRepositoryToken(UserEntity),
   useValue: {
@@ -439,7 +439,7 @@ export async function createAuthenticatedUser(app: INestApplication) {
 
 ### Service Mocking
 
-```typescript
+```ts
 {
   provide: UserService,
   useValue: {
@@ -451,7 +451,7 @@ export async function createAuthenticatedUser(app: INestApplication) {
 
 ### Config Service Mocking
 
-```typescript
+```ts
 {
   provide: ConfigService,
   useValue: {
@@ -470,7 +470,7 @@ export async function createAuthenticatedUser(app: INestApplication) {
 
 ### Promises
 
-```typescript
+```ts
 it('should handle async operations', async () => {
   const result = await service.asyncOperation();
   expect(result).toBeDefined();
@@ -479,7 +479,7 @@ it('should handle async operations', async () => {
 
 ### Error Handling
 
-```typescript
+```ts
 it('should throw error on failure', async () => {
   await expect(service.failingOperation()).rejects.toThrow(Error);
 });

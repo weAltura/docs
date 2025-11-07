@@ -82,7 +82,7 @@ AppModule (worker)
 
 NestJS uses dependency injection throughout:
 
-```typescript
+```ts
 @Injectable()
 export class UserService {
   constructor(
@@ -102,7 +102,7 @@ export class UserService {
 
 TypeORM repositories abstract database access:
 
-```typescript
+```ts
 // Service uses repository
 const user = await this.userRepository.findOne({ where: { id } });
 
@@ -114,7 +114,7 @@ const user = await this.userRepository.findOne({ where: { id } });
 
 Business logic is encapsulated in services:
 
-```typescript
+```ts
 @Injectable()
 export class UserService {
   async findOne(id: string): Promise<UserDto> {
@@ -132,7 +132,7 @@ export class UserService {
 
 Data Transfer Objects separate API contracts from entities:
 
-```typescript
+```ts
 // Entity (database model)
 @Entity('user')
 export class UserEntity {
@@ -152,7 +152,7 @@ export class UserDto {
 
 Guards handle cross-cutting concerns:
 
-```typescript
+```ts
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
@@ -166,7 +166,7 @@ export class AuthGuard implements CanActivate {
 
 Interceptors handle request/response transformation:
 
-```typescript
+```ts
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -280,7 +280,7 @@ export class TransformInterceptor implements NestInterceptor {
 
 Configuration is loaded based on `NODE_ENV`:
 
-```typescript
+```ts
 // Loads: .env.development → .env.local → .env
 envFilePath: getEnvFilePaths()
 ```
@@ -289,7 +289,7 @@ envFilePath: getEnvFilePaths()
 
 Each feature has its own configuration module:
 
-```typescript
+```ts
 // config/database/database.config.ts
 export default registerAs<DatabaseConfig>('database', () => {
   validateConfig(process.env, EnvironmentVariablesValidator);
@@ -299,7 +299,7 @@ export default registerAs<DatabaseConfig>('database', () => {
 
 ### Configuration Access
 
-```typescript
+```ts
 // Injected ConfigService
 constructor(private configService: ConfigService) {}
 
@@ -313,7 +313,7 @@ const dbConfig = this.configService.getOrThrow('database', { infer: true });
 
 Entities extend `BaseModel`:
 
-```typescript
+```ts
 @Entity('user')
 export class UserEntity extends BaseModel {
   @Column()
@@ -329,7 +329,7 @@ export class UserEntity extends BaseModel {
 
 ### Relationship Patterns
 
-```typescript
+```ts
 // One-to-Many
 @OneToMany(() => Post, post => post.user)
 posts: Post[];
@@ -367,7 +367,7 @@ tags: Tag[];
 
 ### Cache Keys
 
-```typescript
+```ts
 // Structured cache keys
 cacheService.get({
   key: 'User',
@@ -387,7 +387,7 @@ Better Auth handles:
 
 ### Custom Integration
 
-```typescript
+```ts
 // Custom hooks
 @Hook('before', 'sign-in')
 async beforeSignIn(ctx) {
@@ -583,7 +583,7 @@ Error
 
 ### Usage
 
-```typescript
+```ts
 this.i18nService.t('user.notFound', { args: { id } });
 ```
 

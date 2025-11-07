@@ -170,7 +170,7 @@ See [Environment Setup](./ENV_SETUP.md) for details.
 
 ### In Services
 
-```typescript
+```ts
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -191,7 +191,7 @@ export class MyService {
 
 Configuration is typed via `GlobalConfig`:
 
-```typescript
+```ts
 import { GlobalConfig } from '@/config/config.type';
 
 const config = configService.getOrThrow<GlobalConfig['database']>('database', {
@@ -203,7 +203,7 @@ const config = configService.getOrThrow<GlobalConfig['database']>('database', {
 
 All configuration is validated on startup:
 
-```typescript
+```ts
 // Validators use class-validator
 class EnvironmentVariablesValidator {
   @IsString()
